@@ -27,6 +27,13 @@
 }
 ```
 
+![preview](res/screen.jpg)
+
+## Thanks
+
+- [croner](https://www.npmjs.com/package/croner)
+- [starter-vscode](https://github.com/antfu/starter-vscode)
+
 ## License
 
 [MIT](./LICENSE) License © 2022 [kkopite](https://github.com/action-hong)
