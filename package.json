@@ -30,6 +30,48 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "contributes": {
+    "commands": {
+      "command": "tip.hideStatusItem",
+      "title": "hide status item",
+      "category": "tip"
+    },
+    "configuration": {
+      "title": "Daily Tip",
+      "properties": {
+        "tip.tips": {
+          "type": "array",
+          "description": "Config list tips",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "warning",
+                  "error",
+                  "status"
+                ]
+              },
+              "cron": {
+                "type": "string",
+                "required": true,
+                "description": "cron expression"
+              },
+              "message": {
+                "type": "string",
+                "required": true
+              },
+              "color": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "scripts": {
     "build": "tsup src/index.ts --external vscode",
     "dev": "nr build --watch",
@@ -40,6 +82,9 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "release": "bumpp && nr publish"
+  },
+  "dependencies": {
+    "croner": "^7.0.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.1.1",

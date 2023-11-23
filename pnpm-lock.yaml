@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      croner:
+        specifier: ^7.0.5
+        version: 7.0.5
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^1.1.1
@@ -1193,6 +1197,11 @@ packages:
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
+
+  /croner@7.0.5:
+    resolution: {integrity: sha512-15HLCD7iXnMe5km54yc4LN5BH+Cg9uCQvbkJ0acHxFffE29w3Uvgb9s/l310UCVUgMwGSBNw9BAHsEb5uMgj1g==}
+    engines: {node: '>=6.0'}
+    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
