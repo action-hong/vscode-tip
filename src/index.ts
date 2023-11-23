@@ -35,8 +35,12 @@ export function activate(ctx: ExtensionContext) {
       cronContext.createCron(
         tip.cron,
         () => {
-          if (tip.type === 'error') { window.showErrorMessage(tip.message) }
-          else if (tip.type === 'warning') { window.showWarningMessage(tip.message) }
+          if (tip.type === 'error') {
+            window.showErrorMessage(tip.message)
+          }
+          else if (tip.type === 'warning') {
+            window.showWarningMessage(tip.message)
+          }
           else if (tip.type === 'status') {
             barItem.text = tip.message
             barItem.color = tip.color

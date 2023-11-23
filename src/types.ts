@@ -5,11 +5,11 @@ interface TipBase {
   message: string
 }
 
-interface TipMessage extends TipBase{
+interface TipMessage extends TipBase {
   type: 'info' | 'warning' | 'error'
 }
 
-interface TipStatus extends TipBase{
+interface TipStatus extends TipBase {
   type: 'status'
   color?: string
 }
