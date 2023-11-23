@@ -11,6 +11,6 @@ export default defineConfig({
     'vscode',
   ],
   noExternal: [
-    'croner'
-  ]
+    'croner',
+  ],
 })
