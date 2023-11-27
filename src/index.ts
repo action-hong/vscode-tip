@@ -1,8 +1,9 @@
 import type { ExtensionContext } from 'vscode'
 import { StatusBarAlignment, commands, window, workspace } from 'vscode'
-import { EX_HIDE_STATUS_ITEM, EX_NAME, EX_TIPS } from './constants'
+import { DEFAULT_TIME_FORMAT, EX_HIDE_STATUS_ITEM, EX_NAME, EX_SHOWTIME, EX_TIME_FORMAT, EX_TIPS } from './constants'
 import { CronContext } from './CronContext'
 import type { Tip } from './types'
+import { getCurrentTime } from './utils'
 
 export function activate(ctx: ExtensionContext) {
   const channel = window.createOutputChannel('tip')
@@ -12,6 +13,9 @@ export function activate(ctx: ExtensionContext) {
   const barItem = window.createStatusBarItem(StatusBarAlignment.Right, 100)
   barItem.tooltip = 'click to hide'
   barItem.command = EX_HIDE_STATUS_ITEM
+
+  let showTime = workspace.getConfiguration(EX_NAME).get<boolean>('showTime') || false
+  let format = workspace.getConfiguration(EX_NAME).get<string>('timeFormat') || DEFAULT_TIME_FORMAT
 
   ctx.subscriptions.push(
     cronContext,
@@ -25,6 +29,10 @@ export function activate(ctx: ExtensionContext) {
   workspace.onDidChangeConfiguration((e) => {
     if (e.affectsConfiguration(EX_TIPS))
       createCronList()
+    else if (e.affectsConfiguration(EX_SHOWTIME))
+      showTime = workspace.getConfiguration(EX_NAME).get<boolean>('showTime') || false
+    else if (e.affectsConfiguration(EX_TIME_FORMAT))
+      format = workspace.getConfiguration(EX_NAME).get<string>('timeFormat') || DEFAULT_TIME_FORMAT
   })
 
   function createCronList() {
@@ -35,18 +43,22 @@ export function activate(ctx: ExtensionContext) {
       cronContext.createCron(
         tip.cron,
         () => {
+          let message = `${tip.message}`
+          if (showTime)
+            message += `- ${getCurrentTime(format)}`
+
           if (tip.type === 'error') {
-            window.showErrorMessage(tip.message)
+            window.showErrorMessage(message)
           }
           else if (tip.type === 'warning') {
-            window.showWarningMessage(tip.message)
+            window.showWarningMessage(message)
           }
           else if (tip.type === 'status') {
             barItem.text = tip.message
             barItem.color = tip.color
             barItem.show()
           }
-          else { window.showInformationMessage(tip.message) }
+          else { window.showInformationMessage(message) }
         },
       )
     })

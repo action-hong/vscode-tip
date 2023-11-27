@@ -39,6 +39,16 @@
     "configuration": {
       "title": "Daily Tip",
       "properties": {
+        "tip.showTime": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show timer in alert"
+        },
+        "tip.timeFormat": {
+          "type": "string",
+          "default": "YYYY MM DD HH:mm:ss",
+          "description": "Time format"
+        },
         "tip.tips": {
           "type": "array",
           "description": "Config list tips",
@@ -84,7 +94,9 @@
     "release": "bumpp && nr publish"
   },
   "dependencies": {
-    "croner": "^7.0.5"
+    "add": "^2.0.6",
+    "croner": "^7.0.5",
+    "dayjs": "^1.11.10"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.1.1",
