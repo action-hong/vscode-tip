@@ -2,7 +2,7 @@
   "publisher": "kkopite",
   "name": "vscode-tip",
   "displayName": "VS Code Tip",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "packageManager": "pnpm@8.10.5",
   "description": "",
