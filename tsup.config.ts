@@ -12,6 +12,6 @@ export default defineConfig({
   ],
   noExternal: [
     'croner',
-    'dayjs'
+    'dayjs',
   ],
 })
