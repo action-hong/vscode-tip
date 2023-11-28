@@ -44,8 +44,8 @@ export function activate(ctx: ExtensionContext) {
         tip.cron,
         () => {
           let message = `${tip.message}`
-          if (showTime)
-            message += `- ${getCurrentTime(format)}`
+          if (tip.showTime || (tip.showTime === undefined && showTime))
+            message += `- ${getCurrentTime(tip.timeFormat || format)}`
 
           if (tip.type === 'error') {
             window.showErrorMessage(message)
@@ -54,7 +54,7 @@ export function activate(ctx: ExtensionContext) {
             window.showWarningMessage(message)
           }
           else if (tip.type === 'status') {
-            barItem.text = tip.message
+            barItem.text = message
             barItem.color = tip.color
             barItem.show()
           }

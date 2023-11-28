@@ -3,6 +3,8 @@ export type Tip = TipMessage | TipStatus
 interface TipBase {
   cron: string
   message: string
+  showTime?: boolean
+  timeFormat?: string
 }
 
 interface TipMessage extends TipBase {

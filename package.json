@@ -75,6 +75,18 @@
               },
               "color": {
                 "type": "string"
+              },
+              "showTime": {
+                "type": "boolean",
+                "default": false,
+                "required": false,
+                "description": "Show time in alert"
+              },
+              "timeFormat": {
+                "type": "string",
+                "default": "YYYY MM DD HH:mm:ss",
+                "required": false,
+                "description": "Time format"
               }
             }
           }
